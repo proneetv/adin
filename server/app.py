@@ -89,6 +89,7 @@ def hello():
 def updatead():
 	adId = int(request.form['ad_id'])
 	adRecommendation.updateRoutine(1, activityId, adId)
+	return "updated successfully"
 
 
 @app.route("/recommend", methods=['POST', 'GET'])
@@ -112,9 +113,9 @@ def recommend():
 	for i in ads:
 		flag = 0
 		for j in liist:
-			if j[2] == i['id']
+			if j[2] == i['id']:
 				flag = 1
-		if flag == 0
+		if flag == 0:
 			res.append(i['id'])
 
 	return json.dumps(res)
