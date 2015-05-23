@@ -70,19 +70,13 @@ def getRecommendation(a):
 	return res			
 
 
-def personChecking(a,state):
-	ad_reco=getRecommendation(a)
-	IDS=[]
-	for i in xrange(0,ads):
-		IDS.append(i+1)
-	P=zip(ad_reco,IDS)	
-	return sorted(P,reverse=True)
-
-
-def main():
-	print "Enter Person "
-	a=int(raw_input())
-	state=int(raw_input())
-	print personChecking(a,state)	
-
-main()
+def personChecking(userID,userActivityID):
+	ad_reco_prob=getRecommendation(userID)
+	adRecommendation = []
+	maxProb = -1
+	for i in range(0, len(ad_reco_prob)):
+		adRecommendation.append({"id": i+1, "probability": ad_reco_prob[i]})
+		maxProb = max(maxProb, ad_reco_prob[i])
+	for i in range(0, len(ad_reco_prob)):
+		adRecommendation[i]["probability"] /= maxProb
+	return sorted(adRecommendation, key=lambda k:k["probability"], reverse=True)
