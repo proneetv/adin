@@ -13,12 +13,12 @@
 		function validate() {
 			console.log('hello');
 			var data = {
-				"activity": document.forms["activity"]["typeOfActivity"].value,
+				"activity": document.forms["activity"]["testCase"].value,
 			}
 			postRequest(data);
 		}
 		function postRequest(input) {
-			$.post( "http://10.14.120.180:5000/recommend", input)
+			$.post( "http://10.14.120.156:5000/recommend", input)
 			.done(function( data ) {
 				document.getElementById("report").innerHTML =  data ;
 				document.getElementById("activity").style.display =  "none" ;
@@ -36,25 +36,14 @@
 	<div class="col-md-4">
 		<form id="activity" style="margin-top:100px">
 			<div class="form-group">
-				<select name="typeOfActivity" class="form-control">
-					<option value="1">Lying</option>
-					<option value="2">Sitting</option>
-					<option value="3">Standing</option>
-					<option value="4">Walking</option>
-					<option value="5">Running</option>
-					<option value="6">Cycling</option>
-					<option value="7">Nordic walking</option>
-					<option value="9">Watching TV</option>
-					<option value="10">Computer work</option>
-					<option value="11">Car driving</option>
-					<option value="12">Ascending stairs</option>
-					<option value="13">Descending stairs</option>
-					<option value="16">Vacuum cleaning</option>
-					<option value="17">Ironing</option>
-					<option value="18">Folding laundry</option>
-					<option value="19">House cleaning</option>
-					<option value="20">Playing soccer</option>
-					<option value="24">Rope jumping</option>
+				<select name="testCase" class="form-control">
+					<option value="1">Test Case #1</option>
+					<option value="2">Test Case #2</option>
+					<option value="3">Test Case #3</option>
+					<option value="4">Test Case #4</option>
+					<option value="5">Test Case #5</option>
+					<option value="6">Test Case #6</option>
+					<option value="7">Test Case #7</option>
 				</select>
 			</div>
 			<input type="button" name="Submit" value="Submit" onclick="validate()" class="btn btn-default"></input>
