@@ -32,10 +32,8 @@ for i in xrange (0, users):
 
 
 while (True):
-	inp = raw_input().split()
-	i = int(inp[0])
-	j = int(inp[1])
-	k = int(inp[2])
+	i, j, k = map(int, raw_input().split())
+	
 	assert(0 <= i and i < users)
 	assert(0 <= j and j < pos)
 	assert(0 <= k and k < ads)
