@@ -2,13 +2,9 @@ from datetime import timedelta
 from flask import make_response, request, current_app, Flask, jsonify, json, request
 from functools import update_wrapper
 from flaskext.mysql import MySQL
-import math
-import time
-
+import activity, adRecommendation, test
+import math, time
 import numpy as np
-import activity
-import adRecommendation
-import test
 
 activityId = 0
 
@@ -102,7 +98,6 @@ def recommend():
 	print activityId
 	userId = 1 # get this from session
 	ads = adRecommendation.personChecking(userId, activityId)
-
 	cursor = mysql.connect().cursor()
 	cursor.execute("SELECT * FROM user_ad WHERE user_id='1'")
 	data = cursor.fetchall()

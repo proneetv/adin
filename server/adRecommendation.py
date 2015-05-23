@@ -8,6 +8,7 @@ import pickle
 import csv
 from sklearn import cross_validation
 from sklearn.metrics import accuracy_score
+import weights
 import math
 import numpy
 import random
@@ -83,6 +84,7 @@ def personChecking(userID,userActivityID):
 	for i in range(0, len(ad_reco_prob)):
 		adRecommendation.append({"id": i+1, "probability": ad_reco_prob[i]})
 		maxProb = max(maxProb, ad_reco_prob[i])
+	adRecomendation = weights.getAds(userActivityID)
 	for i in range(0, len(ad_reco_prob)):
 		adRecommendation[i]["probability"] /= maxProb
-	return sorted(adRecommendation, key=lambda k:k["probability"], reverse=True)
+	return sorted(adRecomendation, key=lambda k:k["probability"], reverse=True)
