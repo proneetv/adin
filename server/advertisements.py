@@ -10,5 +10,7 @@ def getAds(activityId):
 		ads.append({"id": 4, "probability": 0.3})
 	else:
 		ads.append({"id": 2, "probability": 0.8})
+		ads.append({"id": 3, "probability": 0.6})
+		ads.append({"id": 4, "probability": 0.3})
 
 	return ads
