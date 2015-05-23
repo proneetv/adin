@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="css/bootstrap.css">
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<title>
+	Login
+</title>
+
+<body>
+
+	<script type="text/javascript">
+		function validate() {
+			console.log('hello');
+			var data = {
+				"activity": document.forms["activity"]["typeOfActivity"].value,
+			}
+			postRequest(data);
+		}
+		function postRequest(input) {
+			$.post( "http://10.14.120.180:5000/recommend", input)
+			.done(function( data ) {
+				document.getElementById("report").innerHTML =  data ;
+				document.getElementById("activity").style.display =  "none" ;
+			})
+			.fail(function( data ) {
+				document.getElementById("report").innerHTML =  "Request failed!" ;
+				// document.getElementById("activity").style.display =  "none" ;
+});
+		}
+
+	</script>
+
+
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<form id="activity" style="margin-top:100px">
+			<div class="form-group">
+				<select name="typeOfActivity" class="form-control">
+					<option value="1">Lying</option>
+					<option value="2">Sitting</option>
+					<option value="3">Standing</option>
+					<option value="4">Walking</option>
+					<option value="5">Running</option>
+					<option value="6">Cycling</option>
+					<option value="7">Nordic walking</option>
+					<option value="9">Watching TV</option>
+					<option value="10">Computer work</option>
+					<option value="11">Car driving</option>
+					<option value="12">Ascending stairs</option>
+					<option value="13">Descending stairs</option>
+					<option value="16">Vacuum cleaning</option>
+					<option value="17">Ironing</option>
+					<option value="18">Folding laundry</option>
+					<option value="19">House cleaning</option>
+					<option value="20">Playing soccer</option>
+					<option value="24">Rope jumping</option>
+				</select>
+			</div>
+			<input type="button" name="Submit" value="Submit" onclick="validate()" class="btn btn-default"></input>
+		</form>
+		<div id="report"></div>
+	</div>
+</body>
+
+</html>
