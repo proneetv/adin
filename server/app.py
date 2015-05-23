@@ -57,16 +57,15 @@ def crossdomain(origin=None, methods=None, headers=None,
 @app.route("/auth", methods = ['POST'])
 @crossdomain(origin='*') #, headers='Content-Type')
 def auth():
-    print 'get credentials'
     username = request.form['username']
     password = request.form['password']
-    print 'read credentials'
     cursor = mysql.connect().cursor()
     cursor.execute("SELECT * from user where Username='" + username + "' and password='" + password + "'")
     data = cursor.fetchone()
     if data is None:
     	return "Username or password is wrong"
     else:
+    	print username
     	return "Logged in successfully"
 
 @app.route("/")
