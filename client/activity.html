@@ -20,8 +20,13 @@
 		function postRequest(input) {
 			$.post( "http://localhost:5000/recommend", input)
 			.done(function( data ) {
-				document.getElementById("report").innerHTML =  data ;
 				document.getElementById("activity").style.display =  "none" ;
+
+				// for (var i = 0; i < data.length; i++) {
+				// 	document.getElementById("report").innerHTML =  data[i]['ad_id'] ;
+					
+				// }				
+
 			})
 			.fail(function( data ) {
 				document.getElementById("report").innerHTML =  "Request failed!" ;
@@ -44,14 +49,17 @@
 					<option value="5">Test Case #5</option>
 					<option value="6">Test Case #6</option>
 					<option value="7">Test Case #7</option>
-					<option value="6">Test Case #8</option>
-					<option value="7">Test Case #9</option>
+					<option value="13">Test Case #8</option>
+					<option value="16">Test Case #9</option>
+					<option value="17">Test Case #10</option>
 				</select>
 			</div>
 			<input type="button" name="Submit" value="Submit" onclick="validate()" class="btn btn-default"></input>
 		</form>
 		<div id="report"></div>
 	</div>
+
+	<div id="carousel"></div>
 </body>
 
 </html>
