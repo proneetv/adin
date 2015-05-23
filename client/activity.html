@@ -18,7 +18,7 @@
 			postRequest(data);
 		}
 		function postRequest(input) {
-			$.post( "http://10.14.120.156:5000/recommend", input)
+			$.post( "http://localhost:5000/recommend", input)
 			.done(function( data ) {
 				document.getElementById("report").innerHTML =  data ;
 				document.getElementById("activity").style.display =  "none" ;
