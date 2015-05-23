@@ -10,6 +10,8 @@ import activity
 import adRecommendation
 import test
 
+activityId = 0
+
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'adin'
@@ -81,9 +83,18 @@ def auth():
 def hello():
 	return "Welcome to Python Flask App!"
 
-@app.route("/recommend", methods = ['POST', 'GET'])
+
+@app.route("/updatead", methods=['POST'])
+@crossdomain(origin='*')
+def updatead():
+	adId = int(request.form['ad_id'])
+	adRecommendation.updateRoutine(1, activityId, adId)
+
+
+@app.route("/recommend", methods=['POST', 'GET'])
 @crossdomain(origin='*')
 def recommend():
+	global activityId
 	testCase = int(request.form['testCase'])
 	x = getSensorData(testCase)
 	activityId = int(activity.predict(x))

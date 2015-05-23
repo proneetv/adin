@@ -20,6 +20,12 @@ K=2
 with open("L-file.pickle",'r') as f:
 	L=pickle.load(f)
 
+def updateRoutine(user_id=1,activity,ad_id):
+	L[user_id][activity][ad_id] += 1 
+	with open("L-file.pickle",'wb') as f:
+		pickle.dump(L,f)
+
+
 def getNorm(X):
 	ans=0
 	for x in X:
