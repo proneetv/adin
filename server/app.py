@@ -5,6 +5,7 @@ from flaskext.mysql import MySQL
 import math
 import time
 
+import numpy as np
 import activity
 import adRecommendation
 import test
@@ -67,7 +68,7 @@ def auth():
 	username = request.form['username']
 	password = request.form['password']
 	cursor = mysql.connect().cursor()
-	cursor.execute("SELECT * from user where Username='" + username + "' and password='" + password + "'")
+	cursor.execute("SELECT * FROM user WHERE Username='" + username + "' AND password='" + password + "'")
 	data = cursor.fetchone()
 	if data is None:
 		return "Username or password is wrong"
@@ -80,19 +81,32 @@ def auth():
 def hello():
 	return "Welcome to Python Flask App!"
 
-@app.route("/recommend", methods = ['POST'])
+@app.route("/recommend", methods = ['POST', 'GET'])
 @crossdomain(origin='*')
 def recommend():
-	# actual mode: wearable device will send the actual sensor data
 	testCase = int(request.form['testCase'])
 	x = getSensorData(testCase)
-	# get sensor data 'x' from user
 	activityId = int(activity.predict(x))
 	print activityId
-	# ads = advertisements.getAds(activityId)
 	userId = 1 # get this from session
 	ads = adRecommendation.personChecking(userId, activityId)
-	return json.dumps([dict(ad) for ad in ads])
+
+	cursor = mysql.connect().cursor()
+	cursor.execute("SELECT * FROM user_ad WHERE user_id='1'")
+	data = cursor.fetchall()
+
+	liist = np.array(data)
+	res = []
+
+	for i in ads:
+		flag = 0
+		for j in liist:
+			if j[2] == i['id']
+				flag = 1
+		if flag == 0
+			res.append(i['id'])
+
+	return json.dumps(res)
 
 if __name__ == "__main__":
 	activity.learn()
