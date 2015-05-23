@@ -104,7 +104,7 @@ def recommend():
 
 	liist = np.array(data)
 	res = []
-
+        res.append(str(activityId))
 	for i in ads:
 		flag = 0
 		for j in liist:

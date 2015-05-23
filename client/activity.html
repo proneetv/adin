@@ -31,10 +31,25 @@
 				data = JSON.parse(dat);
 				document.getElementById("activDiv").style.display =  "none" ;
 
-				htmlDataForCarousel = '<div class="bs-example" data-example-id="simple-carousel" style="max-height:300px;max-width:300px"><div id="carousel-example-generic" class="carousel slide" data-ride="carousel"><div class="carousel-inner" role="listbox">';
-				htmlDataForCarousel += '<div class="item active"><img src="images/' + data[0] + '.jpg" id="' + data[0] + '" onclick="sendAdvertisement(this)"></div>';
+				var activ = {
+					'1': 'Lying',
+					'2': 'Sitting',
+					'3': 'Standing',
+					'4': 'Walking',
+					'5': 'Running',
+					'6': 'Cycling',
+					'7': 'Nordic Walking',
+					'13': 'Descending Stairs',
+					'16': 'Vacuum Cleaning',
+					'17': 'Ironing'
+				};
 
-				for (var i=1; i < data.length; i++) {
+
+				htmlDataForCarousel = '<h3>Activity: ' + activ[data[0]] + '</h3>';
+				htmlDataForCarousel += '<div class="bs-example" data-example-id="simple-carousel" style="max-height:300px;max-width:300px"><div id="carousel-example-generic" class="carousel slide" data-ride="carousel"><div class="carousel-inner" role="listbox">';
+				htmlDataForCarousel += '<div class="item active"><img src="images/' + data[1] + '.jpg" id="' + data[1] + '" onclick="sendAdvertisement(this)"></div>';
+
+				for (var i=2; i < data.length; i++) {
 					htmlDataForCarousel += '<div class="item"><img src="images/' + data[i] + '.jpg" id="' + data[i] + '" onclick="sendAdvertisement(this)"></div>';
 				}
 
